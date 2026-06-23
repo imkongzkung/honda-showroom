@@ -1,0 +1,315 @@
+﻿{
+    "value":  [
+                  {
+                      "id":  1,
+                      "model_name":  "Honda City Turbo",
+                      "body_type":  "Sedan",
+                      "engine_system":  "Turbo",
+                      "price":  "599000.00",
+                      "image_url":  "https://honda-peringgit.com.my/wp-content/uploads/2023/08/honda-city-2023-Platinum-White-Pearl.png",
+                      "description":  "แรง เร้าใจ สไตล์สปอร์ต",
+                      "horsepower":  122,
+                      "torque":  173,
+                      "consumption":  "23.8 km/l",
+                      "safety_system":  "Honda SENSING, ABS/EBD, VSA",
+                      "colors":  [
+                                     {
+                                         "id":  6,
+                                         "car_id":  1,
+                                         "color_name":  "Obsidian Blue",
+                                         "color_hex":  "#141b38",
+                                         "image_url":  "https://itp1.itopfile.com/ImageServer/itp_08062020blzv/0/0/%E0%B8%99%E0%B9%89%E0%B8%B3%E0%B9%80%E0%B8%87%E0%B8%B4%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%9A%E0%B8%8B%E0%B8%B4%E0%B9%80%E0%B8%94%E0%B8%B5%E0%B8%A2%E0%B8%99(%E0%B8%A1%E0%B8%B8%E0%B8%81)z-z1041492633828.webp"
+                                     },
+                                     {
+                                         "id":  7,
+                                         "car_id":  1,
+                                         "color_name":  "Ignite Red",
+                                         "color_hex":  "#990000",
+                                         "image_url":  "https://sathonhondacars.com/wp/wp-content/uploads/2019/04/%E0%B9%81%E0%B8%94%E0%B8%87%E0%B8%AD%E0%B8%B4%E0%B8%81%E0%B9%84%E0%B8%99%E0%B8%95%E0%B9%8C-%E0%B9%80%E0%B8%A1%E0%B8%97%E0%B8%B1%E0%B8%A5%E0%B8%A5%E0%B8%B4%E0%B8%81-Ignite-Red-Metallic-R-575M.png"
+                                     },
+                                     {
+                                         "id":  8,
+                                         "car_id":  1,
+                                         "color_name":  "Platinum White",
+                                         "color_hex":  "#F4F4F4",
+                                         "image_url":  "https://cf.autodeft2.pw/uploads/images/%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20Honda%20City%20Turbo%202021_Platinum%20White%20Pearl.png"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  2,
+                      "model_name":  "Honda City Hatchback",
+                      "body_type":  "Hatchback",
+                      "engine_system":  "Turbo",
+                      "price":  "599000.00",
+                      "image_url":  "https://www.hondaaccess.co.th/public/img/frontback/cityHatchback/front.png?v=2",
+                      "description":  "มูฟไปให้สุด กับแฮทช์แบ็ก 5 ประตู",
+                      "horsepower":  122,
+                      "torque":  173,
+                      "consumption":  "23.3 km/l",
+                      "safety_system":  "Honda SENSING, Ultra Seat",
+                      "colors":  [
+                                     {
+                                         "id":  9,
+                                         "car_id":  2,
+                                         "color_name":  "Premium Sunlight White",
+                                         "color_hex":  "#e3e3e3",
+                                         "image_url":  "https://img.icarcdn.com/autospinn/body/000000954276_f6da3061_ec36_4b7b_a5c4_a12b5e2faec3.jpg"
+                                     },
+                                     {
+                                         "id":  10,
+                                         "car_id":  2,
+                                         "color_name":  "Meteoroid Gray",
+                                         "color_hex":  "#444444",
+                                         "image_url":  "https://cf.autodeft2.pw/uploads/images/%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20Honda%20City%20Hatchback%202021%20%E0%B8%AA%E0%B8%B5%20Sonic%20Gray%20Pearl.png"
+                                     },
+                                     {
+                                         "id":  11,
+                                         "car_id":  2,
+                                         "color_name":  "Crystal Black Pearl",
+                                         "color_hex":  "#000000",
+                                         "image_url":  "https://cf.autodeft2.pw/uploads/images/%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20Honda%20City%20Hatchback%202021%20%E0%B8%AA%E0%B8%B5%20Crystal%20Black%20Pearl.png"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  3,
+                      "model_name":  "Honda Civic e:HEV",
+                      "body_type":  "Sedan",
+                      "engine_system":  "e:HEV",
+                      "price":  "1239000.00",
+                      "image_url":  "https://cf.autodeft2.pw/uploads/images/Honda-Civic-Luxe-front-three-quarters.jpg",
+                      "description":  "ยนตรกรรมสปอร์ตพรีเมียมซีดาน",
+                      "horsepower":  184,
+                      "torque":  315,
+                      "consumption":  "25.0 km/l",
+                      "safety_system":  "Honda SENSING, LaneWatch",
+                      "colors":  [
+                                     {
+                                         "id":  1,
+                                         "car_id":  3,
+                                         "color_name":  "Platinum White",
+                                         "color_hex":  "#F4F4F4",
+                                         "image_url":  "https://media.chromedata.com/MediaGallery/media/MjkzOTU4Xk1lZGlhIEdhbGxlcnk/b8h7e3tpduORRCMnd4SqAVxa1UcxzcxrFRpmXJlSwUTtxZ7HyvD-4DCTEnbRHMv-kOwbHrv3mZddQB0DX7fh9REzKzqBRszd8k9H47JKSRfXr0RUgUM9bL0LjzuufoCx_xt5Sv5n41VjbN66ZaGT0Y_SUCm1TVLF-8K_7GDXhZJzAr1oEoD8Ng/cc_2026HOC021985164_03_640_WX.png"
+                                     },
+                                     {
+                                         "id":  2,
+                                         "car_id":  3,
+                                         "color_name":  "Crystal Black",
+                                         "color_hex":  "#000000",
+                                         "image_url":  "https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2026/civic-sedan/Trim-Education/Jellies/2026_Civic-Sedan_Sport_Crystal-Black-Pearl_2x.png"
+                                     },
+                                     {
+                                         "id":  3,
+                                         "car_id":  3,
+                                         "color_name":  "Ignite Red",
+                                         "color_hex":  "#990000",
+                                         "image_url":  "https://cf.autodeft2.pw/uploads/images/%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20All-new%2011th%20Generation%20Civic%20%E0%B8%AA%E0%B8%B5%20Ignite%20Red%20Metallic.png"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  4,
+                      "model_name":  "Honda HR-V e:HEV",
+                      "body_type":  "SUV",
+                      "engine_system":  "e:HEV",
+                      "price":  "979000.00",
+                      "image_url":  "https://hondathanyaburigroup.com/model/uploads/hr-v-ehev/color/color-03.png",
+                      "description":  "พลังงานใหม่...ที่ใครก็ขาดไม่ได้",
+                      "horsepower":  131,
+                      "torque":  253,
+                      "consumption":  "25.6 km/l",
+                      "safety_system":  "Honda SENSING, Hill Descent Control",
+                      "colors":  [
+                                     {
+                                         "id":  4,
+                                         "car_id":  4,
+                                         "color_name":  "Premium Sunlight White",
+                                         "color_hex":  "#EAEAEA",
+                                         "image_url":  "https://hondathanyaburigroup.com/model/uploads/hr-v-ehev/color/color-03.png"
+                                     },
+                                     {
+                                         "id":  5,
+                                         "car_id":  4,
+                                         "color_name":  "Meteoroid Gray",
+                                         "color_hex":  "#444444",
+                                         "image_url":  "https://hondathanyaburigroup.com/model/uploads/hr-v-ehev/color/color-06.png"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  5,
+                      "model_name":  "Honda CR-V e:HEV",
+                      "body_type":  "SUV",
+                      "engine_system":  "e:HEV",
+                      "price":  "1589000.00",
+                      "image_url":  "https://di-uploads-pod6.dealerinspire.com/bianchihonda/uploads/2019/12/2020_CR-V_3-4FrontView_PlatinumWhitePearl.png",
+                      "description":  "ที่สุดแห่งยนตรกรรม SUV",
+                      "horsepower":  207,
+                      "torque":  335,
+                      "consumption":  "20.8 km/l",
+                      "safety_system":  "Honda SENSING, 360 Camera",
+                      "colors":  [
+                                     {
+                                         "id":  12,
+                                         "car_id":  5,
+                                         "color_name":  "Platinum White Pearl",
+                                         "color_hex":  "#f4f4f4",
+                                         "image_url":  "https://www.hondalatincaribbean.com/upload/car/cr-v-2025/color/lhd-platinum-white-pearl/2.png"
+                                     },
+                                     {
+                                         "id":  13,
+                                         "car_id":  5,
+                                         "color_name":  "Crystal Black Pearl",
+                                         "color_hex":  "#000000",
+                                         "image_url":  "https://mxs-dm-imagebucket-prod.s3.us-east-2.amazonaws.com/Honda/model/2023/CR-V/CRV23-201_SPORT_TOURING_NH_731P_Crystal_Black_Pearl.webp"
+                                     },
+                                     {
+                                         "id":  14,
+                                         "car_id":  5,
+                                         "color_name":  "Canyon River Blue",
+                                         "color_hex":  "#2c3e50",
+                                         "image_url":  "https://cf.autodeft2.pw/uploads/images/%E0%B8%A3%E0%B8%B2%E0%B8%84%E0%B8%B2%20Honda%20CR-V_%E0%B8%AA%E0%B8%B5%20Cosmic%20Blue%20Metallic.png"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  6,
+                      "model_name":  "Honda WR-V",
+                      "body_type":  "SUV",
+                      "engine_system":  "Turbo",
+                      "price":  "799000.00",
+                      "image_url":  "https://www.honda.com.my/asset/pixelvault/2023-12/e37211f80a419fc1fdf27b9ca6628dfe3017f00311957.png",
+                      "description":  "The Sporty SUV",
+                      "horsepower":  121,
+                      "torque":  145,
+                      "consumption":  "16.7 km/l",
+                      "safety_system":  "Honda SENSING, LaneWatch",
+                      "colors":  [
+                                     {
+                                         "id":  15,
+                                         "car_id":  6,
+                                         "color_name":  "Ignite Red Metallic",
+                                         "color_hex":  "#aa0000",
+                                         "image_url":  "https://sukhothaihonda.com/wp-content/uploads/2023/09/1678152201_219.png"
+                                     },
+                                     {
+                                         "id":  16,
+                                         "car_id":  6,
+                                         "color_name":  "Stellar Diamond Pearl",
+                                         "color_hex":  "#798794",
+                                         "image_url":  "https://sukhothaihonda.com/wp-content/uploads/2023/09/1678152201_218.png"
+                                     },
+                                     {
+                                         "id":  17,
+                                         "car_id":  6,
+                                         "color_name":  "Meteoroid Gray Metallic",
+                                         "color_hex":  "#555555",
+                                         "image_url":  "https://www.headlightmag.com/hlmwp/wp-content/uploads/2023/03/honda-wrv-grey.jpeg"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  7,
+                      "model_name":  "Honda e:N1",
+                      "body_type":  "SUV",
+                      "engine_system":  "EV",
+                      "price":  "1390000.00",
+                      "image_url":  "https://www.hondaaccess.co.th/public/img/frontback/en1/front.png?v=2",
+                      "description":  "ยนตรกรรมไฟฟ้า 100%",
+                      "horsepower":  204,
+                      "torque":  310,
+                      "consumption":  "500 km/charge",
+                      "safety_system":  "Honda SENSING, Blind Spot Info",
+                      "colors":  [
+                                     {
+                                         "id":  18,
+                                         "car_id":  7,
+                                         "color_name":  "Platinum White Pearl",
+                                         "color_hex":  "#ffffff",
+                                         "image_url":  "https://www.9carthai.com/wp-content/uploads/2025/03/Honda-eN1-20.png"
+                                     },
+                                     {
+                                         "id":  19,
+                                         "car_id":  7,
+                                         "color_name":  "Crystal Black Pearl",
+                                         "color_hex":  "#000000",
+                                         "image_url":  "https://hondasai4group.com/wp-content/uploads/2024/04/1740989199_239-1024x410.webp"
+                                     },
+                                     {
+                                         "id":  20,
+                                         "car_id":  7,
+                                         "color_name":  "Sonic Gray Pearl",
+                                         "color_hex":  "#708090",
+                                         "image_url":  "https://sp-ao.shortpixel.ai/client/to_auto,q_glossy,ret_img,w_1920,h_769/https://www.carwizard.co.th/wp-content/uploads/2024/04/1704448735_568-copy.jpg"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  8,
+                      "model_name":  "Honda BR-V",
+                      "body_type":  "MUV",
+                      "engine_system":  "Turbo",
+                      "price":  "915000.00",
+                      "image_url":  "https://www.checkraka.com/uploaded/logo/f1/f120e5846ddca1206d9d39206895a869.webp",
+                      "description":  "WHERE WE BELONG",
+                      "horsepower":  121,
+                      "torque":  145,
+                      "consumption":  "16.1 km/l",
+                      "safety_system":  "Honda SENSING, LaneWatch",
+                      "colors":  [
+                                     {
+                                         "id":  21,
+                                         "car_id":  8,
+                                         "color_name":  "Premium Sunlight White",
+                                         "color_hex":  "#e3e3e3",
+                                         "image_url":  "https://www.9carthai.com/wp-content/uploads/2025/03/Honda-eN1-20.png"
+                                     },
+                                     {
+                                         "id":  22,
+                                         "car_id":  8,
+                                         "color_name":  "Crystal Black Pearl",
+                                         "color_hex":  "#000000",
+                                         "image_url":  "https://hondasai4group.com/wp-content/uploads/2024/04/1740989199_239-1024x410.webp"
+                                     },
+                                     {
+                                         "id":  23,
+                                         "car_id":  8,
+                                         "color_name":  "Taffeta White",
+                                         "color_hex":  "#f8f9fa",
+                                         "image_url":  "https://images.honda.co.th/uploads/car_models/1660882155_911.png"
+                                     }
+                                 ]
+                  },
+                  {
+                      "id":  10,
+                      "model_name":  "Honda Civic Type R",
+                      "body_type":  "Hatchback",
+                      "engine_system":  "Turbo",
+                      "price":  "3990000.00",
+                      "image_url":  "https://vehicle-images.dealerinspire.com/stock-images/chrome/a94903a97b32e5dedf9be47d1cf944b5.png",
+                      "description":  "The Legend is Back. ที่สุดแห่งยนตรกรรมสปอร์ต",
+                      "horsepower":  320,
+                      "torque":  420,
+                      "consumption":  "11.3 km/l",
+                      "safety_system":  "Honda SENSING, Type R LogR",
+                      "colors":  [
+                                     {
+                                         "id":  25,
+                                         "car_id":  10,
+                                         "color_name":  "Rallye Red",
+                                         "color_hex":  "#cc0000",
+                                         "image_url":  "https://automobiles.honda.com/-/media/Honda-Automobiles/Vehicles/2025/civic-type-r/non-VLP/Global-Nav--Inventory/MY25-Civic-Type-R-non-VLP-nav-2x.png"
+                                     },
+                                     {
+                                         "id":  29,
+                                         "car_id":  10,
+                                         "color_name":  "Championship White",
+                                         "color_hex":  "#f4f4f4",
+                                         "image_url":  "https://www.hondainfocenter.com/-/media/Honda-Sales-Tool-Media-Folder/Images/2023-Civic-Type-R/Headers/MY23CivicTypeRheader620x200.ashx"
+                                     }
+                                 ]
+                  }
+              ],
+    "Count":  9
+}

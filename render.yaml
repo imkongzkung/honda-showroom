@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: honda-showroom-booking
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: DB_HOST
+        value: bkksqrrfa1pneuqlzcyc-mysql.services.clever-cloud.com
+      - key: DB_USER
+        value: ugdkxrqhm2hyhcmh
+      - key: DB_PASSWORD
+        value: 7bf1wZMIub8rUJcyKB3Z
+      - key: DB_NAME
+        value: bkksqrrfa1pneuqlzcyc
+      - key: DB_PORT
+        value: "3306"
+      - key: NODE_ENV
+        value: production

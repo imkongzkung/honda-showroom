@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>รายละเอียดรถยนต์ | Honda Showroom</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">HONDA</span>
+        <span class="logo-badge">SHOWROOM</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="techno.html">เทคโนโลยี</a></li>
+        <li><a href="contact.html">ติดต่อเรา</a></li>
+        <li><a href="#" onclick="openCompareModal()">เปรียบเทียบรุ่นรถ</a></li>
+      </ul>
+      <div class="nav-btn-container">
+        <a href="index.html" class="btn btn-secondary">&larr; กลับหน้าหลัก</a>
+      </div>
+    </div>
+  </header>
+
+  <div id="loading-spinner" style="text-align: center; margin: 150px 0; font-size: 18px; color: var(--text-muted);">
+    กำลังโหลดข้อมูลรถยนต์...
+  </div>
+
+  <!-- DETAILS WRAPPER -->
+  <div class="container" id="detail-content" style="display: none; padding-top: 130px; padding-bottom: 80px;">
+    <div class="detail-layout" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px; align-items: start;">
+      
+      <!-- Left side: image showcase -->
+      <div class="detail-visual-section">
+        <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 30px; display: flex; justify-content: center; align-items: center; min-height: 380px;">
+          <img id="main-car-img" src="" alt="Car Image" style="width: 100%; max-height: 320px; object-fit: contain; transition: var(--transition-slow);">
+        </div>
+        
+        <!-- Spec sheets -->
+        <div class="tech-info" style="margin-top: 30px; padding: 24px; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-md);">
+          <h3 style="color:#fff; margin-bottom: 12px; font-size:18px;">🛡️ ระบบความปลอดภัยและฟังก์ชันเด่น</h3>
+          <p id="safety-text-detail" style="font-size: 14px; color: var(--text-muted); line-height:1.7;">-</p>
+        </div>
+      </div>
+
+      <!-- Right side -->
+      <div class="detail-info-section">
+        <div class="badges" style="margin-bottom: 15px;">
+          <span class="badge body" id="detail-badge-body" style="font-size: 12px; padding: 6px 12px;">-</span>
+          <span class="badge" id="detail-badge-engine" style="font-size: 12px; padding: 6px 12px;">-</span>
+        </div>
+
+        <h1 class="product-title" id="detail-car-name" style="font-size: 38px; color: #fff; margin-bottom: 10px; font-weight:800;">-</h1>
+        <p id="detail-car-displacement" style="font-size: 13px; color: var(--primary); font-weight: 600; margin-bottom: 10px; font-family: var(--font-display);">-</p>
+        <p class="product-slogan" id="detail-car-desc" style="color: var(--text-muted); font-size: 15px; margin-bottom: 25px;">-</p>
+        
+        <!-- Specs mini table -->
+        <div class="specs-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px;">
+          <div class="spec-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; text-align: center;">
+            <small style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">แรงม้าสูงสุด</small>
+            <strong id="hp-val" style="display: block; font-size: 15px; color: #fff; margin-top: 4px;">-</strong>
+          </div>
+          <div class="spec-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; text-align: center;">
+            <small style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">แรงบิดสูงสุด</small>
+            <strong id="torque-val" style="display: block; font-size: 15px; color: #fff; margin-top: 4px;">-</strong>
+          </div>
+          <div class="spec-item" style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 12px; border-radius: 8px; text-align: center;">
+            <small style="font-size: 11px; color: var(--text-muted); text-transform: uppercase;">อัตราสิ้นเปลือง</small>
+            <strong id="fuel-val" style="display: block; font-size: 15px; color: #fff; margin-top: 4px;">-</strong>
+          </div>
+        </div>
+
+        <div class="price-tag" id="detail-car-price" style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 20px;">- <span>บาท</span></div>
+
+        <!-- Color Option Selector -->
+        <div class="color-selector" style="margin-bottom: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+          <div class="color-label" style="font-size: 14px; margin-bottom: 12px; color: var(--text-light);">เลือกสีภายนอก: <span id="color-name-display" style="color: var(--primary); font-weight:600;">-</span></div>
+          <div id="color-options-container" class="color-options" style="display: flex; gap: 12px;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Installment Calculator Section -->
+        <div class="calculator-container" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-md); padding: 24px; margin-bottom: 30px;">
+          <h3 style="color:#fff; font-size:16px; margin-bottom: 16px; display:flex; align-items:center; gap:8px;">🧮 เครื่องคำนวณค่างวดจำลอง</h3>
+          <div class="calc-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="form-group">
+              <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block;">เงินดาวน์ (%)</label>
+              <select id="calc-down" class="form-control" onchange="calculateLoan()" style="width:100%; padding: 10px;">
+                <option value="0.15">15%</option>
+                <option value="0.20">20%</option>
+                <option value="0.25" selected>25%</option>
+                <option value="0.30">30%</option>
+              </select>
+              <div id="down-amount-display" style="font-size:11px; color:var(--primary); margin-top:4px;">-</div>
+            </div>
+
+            <div class="form-group">
+              <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block;">ระยะเวลาผ่อนชำระ</label>
+              <select id="calc-years" class="form-control" onchange="calculateLoan()" style="width:100%; padding: 10px;">
+                <option value="48">4 ปี (48 งวด)</option>
+                <option value="60" selected>5 ปี (60 งวด)</option>
+                <option value="72">6 ปี (72 งวด)</option>
+                <option value="84">7 ปี (84 งวด)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="calc-result" style="background: rgba(227, 24, 55, 0.05); border: 1px dashed rgba(227, 24, 55, 0.2); border-radius: 8px; padding: 12px; text-align: center;">
+            <span style="font-size: 13px; color: var(--text-muted);">ผ่อนชำระประมาณเดือนละ</span>
+            <span id="monthly-val" style="display: block; font-size: 28px; font-weight: 800; color: #fff; margin: 4px 0; font-family: var(--font-display);">0</span>
+            <span style="font-size: 13px; color: var(--text-muted);">บาท (อัตราดอกเบี้ยคงที่ 2.59% ต่อปี)</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" onclick="openTestDriveModal()" style="width: 100%; padding: 16px; font-size: 16px; border-radius: 12px; font-weight:700;">🚗 จองคิวทดลองขับ (Test Drive)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST DRIVE RESERVATION MODAL -->
+  <div class="modal" id="test-drive-modal">
+    <div class="modal-overlay" onclick="closeTestDriveModal()"></div>
+    <div class="modal-container" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 class="modal-title">📝 ลงทะเบียนทดลองขับ</h3>
+        <button class="modal-close-btn" onclick="closeTestDriveModal()">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      
+      <div class="modal-body" style="max-height: 480px; overflow-y: auto; padding-right: 8px;">
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">ชื่อ-นามสกุล (ผู้ขับขี่)</label>
+          <input type="text" id="td-name" class="form-control" placeholder="กรอกชื่อและนามสกุลของคุณ" style="width:100%;">
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">เบอร์โทรศัพท์มือถือ</label>
+          <input type="tel" id="td-phone" class="form-control" placeholder="กรอกเบอร์โทรศัพท์ติดต่อ" maxlength="10" style="width:100%;">
+        </div>
+        
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">สาขาโชว์รูมที่สะดวกเข้ารับบริการ</label>
+          <select id="td-branch" class="form-control" onchange="updateBranchMap()" style="width:100%;">
+            <option value="" disabled selected>-- กรุณาเลือกสาขา --</option>
+          </select>
+          
+          <!-- Live Google Map Preview Box -->
+          <div class="dealer-map-placeholder" id="map-wrapper" style="height: 180px; margin-top: 10px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.2);">
+            <span>กรุณาเลือกสาขาเพื่อแสดงแผนที่โชว์รูมนำทาง</span>
+          </div>
+        </div>
+        
+        <div class="form-grid" style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 15px; margin-bottom: 16px;">
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">วันที่นัดหมาย</label>
+            <input type="date" id="td-date" class="form-control" style="width:100%;">
+          </div>
+
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">เวลาที่สะดวก</label>
+            <select id="td-time" class="form-control" style="width:100%;">
+              <option value="" disabled selected>-- เลือกเวลา --</option>
+              <option value="09:00">09:00</option>
+              <option value="10:30">10:30</option>
+              <option value="13:00">13:00</option>
+              <option value="14:30">14:30</option>
+              <option value="16:00">16:00</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer" style="padding-top: 15px; border-top: 1px solid var(--border-color);">
+        <button class="btn btn-secondary" onclick="closeTestDriveModal()">ยกเลิก</button>
+        <button class="btn btn-primary" onclick="submitTestDrive()" style="flex-grow: 1;">ยืนยันการจองทดลองขับ</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- COMPARE MODAL -->
+  <div class="modal" id="compare-modal">
+    <div class="modal-overlay" onclick="closeCompareModal()"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⚖️ เปรียบเทียบสเปกรถยนต์</h3>
+        <button class="modal-close-btn" onclick="closeCompareModal()">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); margin-bottom: 20px;">กรุณาเลือกรุ่นรถยนต์ 2 รุ่นที่ต้องการเปรียบเทียบสเปกเบื้องต้น</p>
+        
+        <div class="compare-selectors" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 1</label>
+            <select id="select-car-1" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+
+          <div style="font-weight: 800; font-size: 20px; color: var(--primary); text-align: center; margin: 5px 0;">VS</div>
+
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 2</label>
+            <select id="select-car-2" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding-top: 20px;">
+        <button class="btn btn-secondary" onclick="closeCompareModal()">ปิด</button>
+        <button class="btn btn-primary" onclick="confirmCompare()" style="flex-grow: 1;">เริ่มเปรียบเทียบสเปก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">HONDA<span>SHOWROOM</span></div>
+          <p style="margin-top: 10px; max-width: 320px; line-height: 1.7;">
+            สัมผัสที่สุดของระบบจองสิทธิ์ทดลองขับและคำนวณค่างวดออนไลน์เสมือนจริงสำหรับรถยนต์ Honda ทุกรุ่น
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>เมนูนำทาง</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">หน้าแรกโชว์รูม</a></li>
+            <li><a href="techno.html">นวัตกรรมเทคโนโลยี</a></li>
+            <li><a href="contact.html">ติดต่อสาขา / ค้นหาโชว์รูม</a></li>
+            <li><a href="#" onclick="openCompareModal()">เปรียบเทียบสเปกรุ่นรถ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>ฝ่ายบริการลูกค้า</h4>
+          <p style="margin-bottom: 12px;">บริษัท ฮอนด้า ออโตโมบิล (ประเทศไทย) จำกัด (สาธิต)</p>
+          <p style="margin-bottom: 12px;">อีเมล: support@hondashowroom.co.th</p>
+          <p>สายด่วน: 02-555-9999 (จันทร์ - เสาร์ 08:30 - 17:30 น.)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Honda Automobile Thailand. All Rights Reserved. (Demo Project)</p>
+        <p style="font-size: 12px; color: var(--text-muted);">โชว์รูมรถยนต์ ฮอนด้า (ประเทศไทย)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const carId = parseInt(urlParams.get('id'));
+    const isAutoBook = urlParams.get('book') === 'true';
+    let currentCar = null;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadCarDetails();
+      populateCompareDropdowns(window.CAR_DATABASE);
+      loadBranchesDropdown();
+    });
+
+    async function loadCarDetails() {
+      console.log('[DEBUG] loadCarDetails started');
+      console.log('[DEBUG] window.location.href:', window.location.href);
+      console.log('[DEBUG] window.location.search:', window.location.search);
+      console.log('[DEBUG] Parsed carId from URL search params:', carId);
+
+      const selectedId = isNaN(carId) || !carId ? 1 : carId;
+      console.log('[DEBUG] selectedId to fetch:', selectedId);
+
+      // Fetch latest database entries from Clever Cloud
+      try {
+        const res = await fetch(`/api/cars/${selectedId}`);
+        if (res.ok) {
+          const data = await res.json();
+          console.log('[DEBUG] Fetched data from API:', data);
+          if (data) {
+            window.CAR_DATABASE = [data]; // wrap in array so find works
+          }
+        } else {
+          console.log('[DEBUG] API response not ok, status:', res.status);
+        }
+      } catch (error) {
+        console.log('Unable to reach server database API, using database.js static fallback.', error);
+      }
+
+      console.log('[DEBUG] window.CAR_DATABASE state:', window.CAR_DATABASE);
+
+      if (!carId || !window.CAR_DATABASE) {
+        let fallbackId = carId;
+        if (isNaN(fallbackId) || !fallbackId) {
+          fallbackId = 1;
+        }
+        console.log('[DEBUG] Entering fallback with ID:', fallbackId);
+        loadCarUI(fallbackId);
+      } else {
+        console.log('[DEBUG] Entering standard load with ID:', carId);
+        loadCarUI(carId);
+      }
+    }
+
+    function loadCarUI(selectedId) {
+      console.log('[DEBUG] loadCarUI called with selectedId:', selectedId);
+      if (isNaN(selectedId) || !selectedId) {
+        selectedId = 1;
+        console.log('[DEBUG] selectedId was NaN/falsy, reset to 1');
+      }
+
+      currentCar = window.CAR_DATABASE.find(c => c.id == selectedId);
+      console.log('[DEBUG] Found currentCar:', currentCar);
+
+      if (!currentCar) {
+        alert('ไม่พบข้อมูลรถยนต์รุ่นดังกล่าว');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      // Hide loading spinner, show content
+      document.getElementById('loading-spinner').style.display = 'none';
+      document.getElementById('detail-content').style.display = 'block';
+
+      // Set values
+      document.getElementById('main-car-img').src = currentCar.colors && currentCar.colors.length > 0 ? currentCar.colors[0].image_url : currentCar.image_url;
+      document.getElementById('main-car-img').alt = currentCar.model_name;
+      document.getElementById('detail-car-name').textContent = currentCar.model_name;
+      document.getElementById('detail-car-displacement').textContent = currentCar.displacement || '-';
+      document.getElementById('detail-car-desc').textContent = currentCar.description;
+      document.getElementById('detail-car-price').innerHTML = new Intl.NumberFormat('th-TH').format(parseFloat(currentCar.price)) + ' <span>บาท</span>';
+      
+      document.getElementById('detail-badge-body').textContent = currentCar.body_type;
+      
+      const engineTag = document.getElementById('detail-badge-engine');
+      engineTag.textContent = currentCar.engine_system;
+      if (currentCar.engine_system === 'e:HEV') engineTag.className = 'badge ehev';
+      else if (currentCar.engine_system === 'EV') engineTag.className = 'badge ev';
+      else engineTag.className = 'badge turbo';
+
+      document.getElementById('hp-val').textContent = currentCar.horsepower ? currentCar.horsepower + ' PS' : '-';
+      document.getElementById('torque-val').textContent = currentCar.torque ? currentCar.torque + ' Nm' : '-';
+      document.getElementById('fuel-val').textContent = currentCar.consumption || '-';
+      document.getElementById('safety-text-detail').textContent = currentCar.safety_system || '-';
+
+      // Load Color Options
+      const colorContainer = document.getElementById('color-options-container');
+      colorContainer.innerHTML = '';
+      
+      if (currentCar.colors && currentCar.colors.length > 0) {
+        document.getElementById('color-name-display').textContent = currentCar.colors[0].color_name;
+        
+        currentCar.colors.forEach((color, index) => {
+          const dot = document.createElement('div');
+          dot.className = `color-dot ${index === 0 ? 'active' : ''}`;
+          dot.style.backgroundColor = color.color_hex;
+          dot.style.width = '28px';
+          dot.style.height = '28px';
+          dot.style.borderRadius = '50%';
+          dot.style.cursor = 'pointer';
+          dot.style.border = '2px solid var(--bg-card-solid)';
+          dot.style.outline = index === 0 ? '2px solid var(--primary)' : '2px solid transparent';
+          dot.title = color.color_name;
+          
+          dot.onclick = () => {
+            changeColorImage(color.image_url, color.color_name);
+            colorContainer.querySelectorAll('.color-dot').forEach(d => {
+              d.classList.remove('active');
+              d.style.outline = '2px solid transparent';
+            });
+            dot.classList.add('active');
+            dot.style.outline = '2px solid var(--primary)';
+          };
+          colorContainer.appendChild(dot);
+        });
+      } else {
+        document.getElementById('color-name-display').textContent = 'สีมาตรฐาน';
+      }
+
+      calculateLoan();
+
+      if (isAutoBook) {
+        openTestDriveModal();
+      }
+    }
+
+    function changeColorImage(url, colorName) {
+      const img = document.getElementById('main-car-img');
+      img.style.opacity = 0.5;
+      img.style.transform = 'scale(0.97)';
+      setTimeout(() => {
+        img.src = url;
+        img.style.opacity = 1;
+        img.style.transform = 'scale(1)';
+        document.getElementById('color-name-display').textContent = colorName;
+      }, 200);
+    }
+
+    function calculateLoan() {
+      if (!currentCar) return;
+      
+      const price = parseFloat(currentCar.price);
+      const downPercent = parseFloat(document.getElementById('calc-down').value);
+      const months = parseInt(document.getElementById('calc-years').value);
+      const interestRate = 2.59;
+
+      const downAmount = price * downPercent;
+      const financeAmount = price - downAmount;
+      const years = months / 12;
+      const totalInterest = financeAmount * (interestRate / 100) * years;
+      const totalAmount = financeAmount + totalInterest;
+      const monthlyPayment = totalAmount / months;
+
+      document.getElementById('down-amount-display').textContent = `(เงินดาวน์ ${new Intl.NumberFormat('th-TH').format(downAmount)} บ.)`;
+      document.getElementById('monthly-val').textContent = new Intl.NumberFormat('th-TH').format(Math.ceil(monthlyPayment));
+    }
+
+    function openTestDriveModal() {
+      document.getElementById('test-drive-modal').classList.add('active');
+      const defaultDate = new Date();
+      defaultDate.setDate(defaultDate.getDate() + 2);
+      const year = defaultDate.getFullYear();
+      const month = String(defaultDate.getMonth() + 1).padStart(2, '0');
+      const day = String(defaultDate.getDate()).padStart(2, '0');
+      document.getElementById('td-date').value = `${year}-${month}-${day}`;
+    }
+
+    function closeTestDriveModal() {
+      document.getElementById('test-drive-modal').classList.remove('active');
+    }
+
+    async function loadBranchesDropdown() {
+      try {
+        const res = await fetch('/api/branches');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            window.BRANCH_DATABASE = data;
+          }
+        }
+      } catch (error) {
+        console.log('Unable to reach server branches API, using database.js static fallback.', error);
+      }
+
+      const select = document.getElementById('td-branch');
+      if (!select || !window.BRANCH_DATABASE) return;
+
+      select.innerHTML = '<option value="" disabled selected>-- กรุณาเลือกสาขา --</option>';
+      window.BRANCH_DATABASE.forEach(branch => {
+        const option = document.createElement('option');
+        option.value = branch.name;
+        option.textContent = branch.name;
+        select.appendChild(option);
+      });
+    }
+
+    function updateBranchMap() {
+      const branchName = document.getElementById('td-branch').value;
+      const mapWrapper = document.getElementById('map-wrapper');
+      if (!mapWrapper) return;
+
+      if (branchName) {
+        const query = encodeURIComponent("โชว์รูมรถยนต์ ฮอนด้า " + branchName);
+        mapWrapper.innerHTML = `
+          <iframe 
+            width="100%" height="100%" frameborder="0" style="border:0; border-radius: 8px;"
+            src="https://maps.google.com/maps?q=${query}&t=&z=15&ie=UTF8&iwloc=&output=embed">
+          </iframe>
+        `;
+      } else {
+        mapWrapper.innerHTML = '<span>กรุณาเลือกสาขาเพื่อแสดงแผนที่โชว์รูมนำทาง</span>';
+      }
+    }
+
+    function submitTestDrive() {
+      const name = document.getElementById('td-name').value.trim();
+      const phone = document.getElementById('td-phone').value.trim();
+      const branch = document.getElementById('td-branch').value;
+      const dateVal = document.getElementById('td-date').value;
+      const timeVal = document.getElementById('td-time').value;
+
+      if (!name) {
+        alert('กรุณากรอกชื่อ-นามสกุลของผู้ขับขี่');
+        return;
+      }
+      if (!phone || phone.length < 9 || phone.length > 10 || isNaN(phone)) {
+        alert('กรุณากรอกเบอร์โทรศัพท์ที่ถูกต้อง (9-10 หลัก)');
+        return;
+      }
+      if (!branch) {
+        alert('กรุณาเลือกสาขาโชว์รูมที่สะดวกเข้ารับบริการ');
+        return;
+      }
+      if (!dateVal) {
+        alert('กรุณาเลือกวันที่นัดหมายทดลองขับ');
+        return;
+      }
+      if (!timeVal) {
+        alert('กรุณาเลือกเวลาที่สะดวกนัดหมาย');
+        return;
+      }
+
+      const bookingId = `HD-TD-${Math.floor(100000 + Math.random() * 900000)}`;
+      const activeColor = document.getElementById('color-name-display').textContent;
+      const activeColorDot = document.querySelector('.color-dot.active');
+      const activeColorHex = activeColorDot ? activeColorDot.style.backgroundColor : '#fff';
+
+      const dateParts = dateVal.split('-');
+      const thaiMonths = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+      const dateObj = new Date(dateVal);
+      const dayNum = dateObj.getDate();
+      const monthStr = thaiMonths[dateObj.getMonth()];
+      const yearBE = dateObj.getFullYear() + 543;
+      const formattedThaiDate = `${dayNum} ${monthStr} ${yearBE}`;
+
+      const loggedUser = typeof getLoggedInUser === 'function' ? getLoggedInUser() : null;
+      const newBooking = {
+        booking_id: bookingId,
+        user_id: loggedUser ? loggedUser.id : null,
+        car_id: currentCar.id,
+        car_name: currentCar.model_name,
+        color_name: activeColor,
+        color_code: activeColorHex,
+        dealer: branch,
+        date_string: formattedThaiDate,
+        time_slot: timeVal,
+        fullname: name,
+        phone: phone
+      };
+
+      // 1. Post to Clever Cloud Database via server.js API
+      fetch('/api/test-drive', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newBooking)
+      })
+      .then(res => {
+        if (res.ok) {
+          console.log('Booking successfully synced to Clever Cloud MySQL!');
+        }
+      })
+      .catch(error => {
+        console.log('API save failed, booking stored locally only.', error);
+      });
+
+      // 2. Save locally for client display
+      let bookings = JSON.parse(localStorage.getItem('honda_bookings') || '[]');
+      bookings.unshift({ id: bookingId, status: 'pending', ...newBooking });
+      localStorage.setItem('honda_bookings', JSON.stringify(bookings));
+
+      closeTestDriveModal();
+      renderSuccessTicket({ id: bookingId, status: 'pending', ...newBooking }, true);
+    }
+
+    function populateCompareDropdowns(cars) {
+      const select1 = document.getElementById('select-car-1');
+      const select2 = document.getElementById('select-car-2');
+      if (!select1 || !select2) return;
+      
+      select1.innerHTML = '<option value="">-- เลือกรุ่นรถ --</option>';
+      select2.innerHTML = '<option value="">-- เลือกรุ่นรถ --</option>';
+
+      cars.forEach(car => {
+        const option1 = `<option value="${car.id}">${car.model_name} (${car.engine_system})</option>`;
+        const option2 = `<option value="${car.id}">${car.model_name} (${car.engine_system})</option>`;
+        select1.innerHTML += option1;
+        select2.innerHTML += option2;
+      });
+    }
+
+    window.openCompareModal = function() {
+      document.getElementById('compare-modal').classList.add('active');
+    };
+
+    window.closeCompareModal = function() {
+      document.getElementById('compare-modal').classList.remove('active');
+    };
+
+    window.confirmCompare = function() {
+      const id1 = document.getElementById('select-car-1').value;
+      const id2 = document.getElementById('select-car-2').value;
+
+      if (!id1 || !id2) {
+        alert('กรุณาเลือกรถให้ครบทั้ง 2 รุ่นครับ');
+        return;
+      }
+      if (id1 === id2) {
+        alert('กรุณาเลือกรุ่นรถที่แตกต่างกันครับ');
+        return;
+      }
+      window.location.href = `compare.html?ids=${id1},${id2}`;
+    };
+  </script>
+</body>
+</html>

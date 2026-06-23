@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ระบบโชว์รูมและทดลองขับรถยนต์ฮอนด้าออนไลน์ สัมผัสอัตราเร่งและดีไซน์สุดล้ำของยนตรกรรม Honda ได้หลากหลายประเภทในสไตล์คุณ">
+  <title>Honda Showroom & Test Drive | หน้าหลักโชว์รูมฮอนด้า</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">HONDA</span>
+        <span class="logo-badge">SHOWROOM</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">หน้าแรก</a></li>
+        <li><a href="techno.html">เทคโนโลยี</a></li>
+        <li><a href="contact.html">ติดต่อเรา</a></li>
+        <li><a href="#" onclick="openCompareModal()">เปรียบเทียบรุ่นรถ</a></li>
+      </ul>
+      <div class="nav-btn-container">
+        <button class="btn btn-primary" onclick="openCompareModal()">⚖️ เริ่มเปรียบเทียบ</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SLIDER BANNER -->
+  <div class="hero-slider" id="hero-slider">
+    <!-- Rendered dynamically in app.js -->
+  </div>
+
+  <!-- NEWS & PROMOTIONS SECTION -->
+  <section class="news-section" style="display: block;">
+    <div class="container">
+      <div class="section-header" style="margin-bottom: 40px; text-align: left; max-width: 100%;">
+        <span class="section-tag" style="margin-bottom: 8px;">News & Promotion</span>
+        <h2 class="section-title" style="font-size: 32px; border-left: 5px solid var(--primary); padding-left: 15px;">ข่าวสารและโปรโมชั่นล่าสุด</h2>
+      </div>
+      <div id="news-container" class="news-grid">
+        <p style="color:var(--text-muted);">กำลังโหลดข่าวสาร...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWROOM CATALOG FILTER SECTION -->
+  <section id="showroom" style="display: block; padding-top: 50px;">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Honda Lineup</span>
+        <h2 class="section-title">เลือกรุ่นรถฮอนด้าที่คุณสนใจ</h2>
+        <p class="section-desc">ค้นพบยนตรกรรมที่ตอบโจทย์ไลฟ์สไตล์การขับขี่ พร้อมเงื่อนไขข้อเสนอพิเศษเฉพาะรุ่น</p>
+      </div>
+
+      <div class="shop-layout">
+        <!-- Sidebar filters -->
+        <aside class="sidebar">
+          <div class="filter-box">
+            <h3>ค้นหารถที่ใช่</h3>
+            
+            <div class="filter-group">
+              <label>ประเภทตัวถัง</label>
+              <select id="filter-body" onchange="applyFilters()">
+                <option value="all" selected>ทั้งหมด (All)</option>
+                <option value="Sedan">Sedan (ซีดาน)</option>
+                <option value="Hatchback">Hatchback (5 ประตู)</option>
+                <option value="SUV">SUV (อเนกประสงค์)</option>
+                <option value="MUV">MUV (ครอบครัว)</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label>ระบบขับเคลื่อน</label>
+              <select id="filter-engine" onchange="applyFilters()">
+                <option value="all" selected>ทั้งหมด (All)</option>
+                <option value="Turbo">VTEC Turbo</option>
+                <option value="e:HEV">Full Hybrid e:HEV</option>
+                <option value="EV">Electric (EV 100%)</option>
+              </select>
+            </div>
+
+            <button class="btn-reset" onclick="resetFilters()">ล้างค่าค้นหา</button>
+          </div>
+        </aside>
+
+        <!-- Dynamic Car Showcase -->
+        <main class="car-content">
+          <div class="car-grid" id="car-list">
+            <!-- Rendered dynamically in app.js -->
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">HONDA<span>SHOWROOM</span></div>
+          <p style="margin-top: 10px; max-width: 320px; line-height: 1.7;">
+            สัมผัสที่สุดของระบบจองสิทธิ์ทดลองขับและคำนวณค่างวดออนไลน์เสมือนจริงสำหรับรถยนต์ Honda ทุกรุ่น
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>เมนูนำทาง</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">หน้าแรกโชว์รูม</a></li>
+            <li><a href="techno.html">นวัตกรรมเทคโนโลยี</a></li>
+            <li><a href="contact.html">ติดต่อสาขา / ค้นหาโชว์รูม</a></li>
+            <li><a href="#" onclick="openCompareModal()">เปรียบเทียบสเปกรุ่นรถ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>ฝ่ายบริการลูกค้า</h4>
+          <p style="margin-bottom: 12px;">บริษัท ฮอนด้า ออโตโมบิล (ประเทศไทย) จำกัด (สาธิต)</p>
+          <p style="margin-bottom: 12px;">อีเมล: support@hondashowroom.co.th</p>
+          <p>สายด่วน: 02-555-9999 (จันทร์ - เสาร์ 08:30 - 17:30 น.)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Honda Automobile Thailand. All Rights Reserved. (Demo Project)</p>
+        <p style="font-size: 12px; color: var(--text-muted);">โชว์รูมรถยนต์ ฮอนด้า (ประเทศไทย)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- COMPARE MODAL -->
+  <div class="modal" id="compare-modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⚖️ เปรียบเทียบสเปกรถยนต์</h3>
+        <button class="modal-close-btn" onclick="closeCompareModal()">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); margin-bottom: 20px;">กรุณาเลือกรุ่นรถยนต์ 2 รุ่นที่ต้องการเปรียบเทียบสเปกเบื้องต้น</p>
+        
+        <div class="compare-selectors" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 1</label>
+            <select id="select-car-1" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+
+          <div style="font-weight: 800; font-size: 20px; color: var(--primary); text-align: center; margin: 5px 0;">VS</div>
+
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 2</label>
+            <select id="select-car-2" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding-top: 20px;">
+        <button class="btn btn-secondary" onclick="closeCompareModal()">ปิด</button>
+        <button class="btn btn-primary" onclick="confirmCompare()" style="flex-grow: 1;">เริ่มเปรียบเทียบสเปก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISITOR COUNTER FLOATING BADGE -->
+  <div class="visitor-counter">
+    <span>👀 ผู้เข้าชมวันนี้: <strong id="visit-count">24,850</strong> คน</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

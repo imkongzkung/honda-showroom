@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เทคโนโลยียานยนต์ | Honda Showroom</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">HONDA</span>
+        <span class="logo-badge">SHOWROOM</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="techno.html" class="active">เทคโนโลยี</a></li>
+        <li><a href="contact.html">ติดต่อเรา</a></li>
+        <li><a href="#" onclick="openCompareModal()">เปรียบเทียบรุ่นรถ</a></li>
+      </ul>
+      <div class="nav-btn-container">
+        <a href="index.html" class="btn btn-secondary">&larr; กลับหน้าหลัก</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <div class="contact-banner" style="background: linear-gradient(185deg, var(--bg-dark) 20%, rgba(227, 24, 55, 0.05) 100%); padding-top: 150px; padding-bottom: 60px; text-align: center; border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <h1 style="font-size: 40px; color:#fff; font-weight:800; margin-bottom: 8px;">⚙️ นวัตกรรมเทคโนโลยีของฮอนด้า</h1>
+      <p style="color: var(--text-muted); font-size: 15px;">เจาะลึกนวัตกรรมอัจฉริยะ ทั้งเครื่องยนต์พลังงานทดแทน ความแรงเร้าใจ และระบบดูแลความปลอดภัยที่ปกป้องคุณทุกเสี้ยววินาที</p>
+    </div>
+  </div>
+
+  <!-- TECH ARTICLES -->
+  <div class="container" style="padding-top: 60px; padding-bottom: 80px; display: flex; flex-direction: column; gap: 60px;">
+    
+    <!-- Technology 1: e:HEV -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 40px; box-shadow: var(--shadow-lg);">
+      <div class="tech-image-wrapper" style="border-radius: var(--border-radius-md); overflow: hidden; background: #07090e; border: 1px solid var(--border-color); padding: 10px;">
+        <img src="https://cf.autodeft2.pw/uploads/images/Honda-Civic-Luxe-front-three-quarters.jpg" alt="e:HEV Technology" style="width: 100%; border-radius: var(--border-radius-sm); object-fit: cover;">
+      </div>
+      <div>
+        <span class="badge ehev" style="font-size: 11px; margin-bottom: 12px; display: inline-block;">Full Hybrid e:HEV</span>
+        <h2 style="color: #fff; font-size: 32px; font-weight: 800; margin-bottom: 16px;">ขับเคลื่อนพลังงานผสมผสานอัจฉริยะ</h2>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+          ระบบฟูลไฮบริด e:HEV จากฮอนด้า ทำงานผสานพลังอย่างราบรื่นระหว่างมอเตอร์ไฟฟ้ากำลังสูง 2 ตัว กับเครื่องยนต์รอบจัดประสิทธิภาพสูงสุด เพื่อมอบแรงบิดตอบสนองฉับไวตั้งแต่กดคันเร่งและมอบการประหยัดน้ำมันที่เป็นเลิศ
+        </p>
+        <ul style="color: var(--text-light); font-size: 14px; line-height: 2; list-style: none; padding-left: 0;">
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:var(--primary); font-weight:bold;">✓</span> ปรับโหมดการขับขี่อัตโนมัติ 3 โหมด (EV, Hybrid, Engine Drive)</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:var(--primary); font-weight:bold;">✓</span> อัตราเร่งทรงพลังต่อเนื่อง เร็วและเงียบแบบรถยนต์ไฟฟ้า</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:var(--primary); font-weight:bold;">✓</span> ประหยัดน้ำมันสูงสุดได้ถึง 25.6 กม./ลิตร (ในรุ่น HR-V)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Technology 2: VTEC Turbo -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 40px; box-shadow: var(--shadow-lg);">
+      <div style="order: 2;">
+        <span class="badge turbo" style="font-size: 11px; margin-bottom: 12px; display: inline-block;">VTEC Turbo</span>
+        <h2 style="color: #fff; font-size: 32px; font-weight: 800; margin-bottom: 16px;">สมรรถนะความแรงเร้าใจสายสปอร์ต</h2>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+          ขุมพลังเครื่องยนต์ VTEC Turbo มอบพละกำลังดุดันเทียบเท่าเครื่องยนต์ขนาดใหญ่ แต่คงระดับความประหยัดน้ำมันไว้ได้อย่างดีเยี่ยม ขับเคลื่อนความเร้าใจในทุกความเร็วด้วยเทอร์โบชาร์จเจอร์อัจฉริยะที่ช่วยบรรจุอากาศเข้ากระบอกสูบได้อย่างรวดเร็ว
+        </p>
+        <ul style="color: var(--text-light); font-size: 14px; line-height: 2; list-style: none; padding-left: 0;">
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:var(--primary); font-weight:bold;">✓</span> แรงบิดรอบต่ำ มอบพละกำลังแรงสั่งได้ดั่งใจ</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:var(--primary); font-weight:bold;">✓</span> ตอบสนองว่องไวไร้อาการรอรอบ (Turbo Lag Minimization)</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:var(--primary); font-weight:bold;">✓</span> พลังขีดสุดถึง 320 แรงม้า (ในตำนาน Civic Type R)</li>
+        </ul>
+      </div>
+      <div class="tech-image-wrapper" style="border-radius: var(--border-radius-md); overflow: hidden; background: #07090e; border: 1px solid var(--border-color); padding: 10px; order: 1;">
+        <img src="assets/civic_typer.jpg" alt="VTEC Turbo Technology" style="width: 100%; border-radius: var(--border-radius-sm); object-fit: cover;">
+      </div>
+    </div>
+
+    <!-- Technology 3: Honda SENSING -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 40px; box-shadow: var(--shadow-lg);">
+      <div class="tech-image-wrapper" style="border-radius: var(--border-radius-md); overflow: hidden; background: #07090e; border: 1px solid var(--border-color); padding: 10px;">
+        <img src="https://www.hondaaccess.co.th/public/img/frontback/en1/front.png?v=2" alt="Honda SENSING Technology" style="width: 100%; border-radius: var(--border-radius-sm); object-fit: cover;">
+      </div>
+      <div>
+        <span class="badge" style="font-size: 11px; margin-bottom: 12px; display: inline-block; background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); color: #10b981;">Honda SENSING</span>
+        <h2 style="color: #fff; font-size: 32px; font-weight: 800; margin-bottom: 16px;">เทคโนโลยีความปลอดภัยอัจฉริยะ</h2>
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8; margin-bottom: 20px;">
+          ระบบเรดาร์และกล้องตรวจจับภาพด้านหน้าอัจฉริยะ คอยแจ้งเตือนและเข้าช่วยเหลือเพื่อหลีกเลี่ยงการเฉี่ยวชน ปกป้องคุณและผู้ร่วมทางให้ปลอดภัยสูงสุดในทุกการเดินทางบนถนนจริง
+        </p>
+        <ul style="color: var(--text-light); font-size: 14px; line-height: 2; list-style: none; padding-left: 0;">
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981; font-weight:bold;">✓</span> ระบบเตือนการชนพร้อมระบบช่วยเบรกเตือนภัย (CMBS)</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981; font-weight:bold;">✓</span> ระบบช่วยควบคุมรถให้อยู่ในช่องทางเดินรถ (LKAS)</li>
+          <li style="display:flex; align-items:center; gap:8px;"><span style="color:#10b981; font-weight:bold;">✓</span> ระบบควบคุมความเร็วแปรผันตามรถคันหน้า (ACC with LSF)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- COMPARE MODAL -->
+  <div class="modal" id="compare-modal">
+    <div class="modal-overlay" onclick="closeCompareModal()"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⚖️ เปรียบเทียบสเปกรถยนต์</h3>
+        <button class="modal-close-btn" onclick="closeCompareModal()">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); margin-bottom: 20px;">กรุณาเลือกรุ่นรถยนต์ 2 รุ่นที่ต้องการเปรียบเทียบสเปกเบื้องต้น</p>
+        
+        <div class="compare-selectors" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 1</label>
+            <select id="select-car-1" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+
+          <div style="font-weight: 800; font-size: 20px; color: var(--primary); text-align: center; margin: 5px 0;">VS</div>
+
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 2</label>
+            <select id="select-car-2" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding-top: 20px;">
+        <button class="btn btn-secondary" onclick="closeCompareModal()">ปิด</button>
+        <button class="btn btn-primary" onclick="confirmCompare()" style="flex-grow: 1;">เริ่มเปรียบเทียบสเปก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">HONDA<span>SHOWROOM</span></div>
+          <p style="margin-top: 10px; max-width: 320px; line-height: 1.7;">
+            สัมผัสที่สุดของระบบจองสิทธิ์ทดลองขับและคำนวณค่างวดออนไลน์เสมือนจริงสำหรับรถยนต์ Honda ทุกรุ่น
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>เมนูนำทาง</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">หน้าแรกโชว์รูม</a></li>
+            <li><a href="techno.html">นวัตกรรมเทคโนโลยี</a></li>
+            <li><a href="contact.html">ติดต่อสาขา / ค้นหาโชว์รูม</a></li>
+            <li><a href="#" onclick="openCompareModal()">เปรียบเทียบสเปกรุ่นรถ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>ฝ่ายบริการลูกค้า</h4>
+          <p style="margin-bottom: 12px;">บริษัท ฮอนด้า ออโตโมบิล (ประเทศไทย) จำกัด (สาธิต)</p>
+          <p style="margin-bottom: 12px;">อีเมล: support@hondashowroom.co.th</p>
+          <p>สายด่วน: 02-555-9999 (จันทร์ - เสาร์ 08:30 - 17:30 น.)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Honda Automobile Thailand. All Rights Reserved. (Demo Project)</p>
+        <p style="font-size: 12px; color: var(--text-muted);">โชว์รูมรถยนต์ ฮอนด้า (ประเทศไทย)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadCarDatabase();
+      populateCompareDropdowns(window.CAR_DATABASE);
+    });
+
+    async function loadCarDatabase() {
+      try {
+        const res = await fetch('/api/cars');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            window.CAR_DATABASE = data;
+          }
+        }
+      } catch (error) {
+        console.log('Unable to reach server database API, using database.js static fallback.', error);
+      }
+    }
+
+    // Compare system logic
+    function populateCompareDropdowns(cars) {
+      const select1 = document.getElementById('select-car-1');
+      const select2 = document.getElementById('select-car-2');
+      if (!select1 || !select2) return;
+      
+      select1.innerHTML = '<option value="">-- เลือกรุ่นรถ --</option>';
+      select2.innerHTML = '<option value="">-- เลือกรุ่นรถ --</option>';
+
+      cars.forEach(car => {
+        const option1 = `<option value="${car.id}">${car.model_name} (${car.engine_system})</option>`;
+        const option2 = `<option value="${car.id}">${car.model_name} (${car.engine_system})</option>`;
+        select1.innerHTML += option1;
+        select2.innerHTML += option2;
+      });
+    }
+
+    window.openCompareModal = function() {
+      document.getElementById('compare-modal').classList.add('active');
+    };
+
+    window.closeCompareModal = function() {
+      document.getElementById('compare-modal').classList.remove('active');
+    };
+
+    window.confirmCompare = function() {
+      const id1 = document.getElementById('select-car-1').value;
+      const id2 = document.getElementById('select-car-2').value;
+
+      if (!id1 || !id2) {
+        alert('กรุณาเลือกรถให้ครบทั้ง 2 รุ่นครับ');
+        return;
+      }
+      if (id1 === id2) {
+        alert('กรุณาเลือกรุ่นรถที่แตกต่างกันครับ');
+        return;
+      }
+      window.location.href = `compare.html?ids=${id1},${id2}`;
+    };
+  </script>
+</body>
+</html>

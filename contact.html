@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ติดต่อเรา | Honda Showroom</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">HONDA</span>
+        <span class="logo-badge">SHOWROOM</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="techno.html">เทคโนโลยี</a></li>
+        <li><a href="contact.html" class="active">ติดต่อเรา</a></li>
+        <li><a href="#" onclick="openCompareModal()">เปรียบเทียบรุ่นรถ</a></li>
+      </ul>
+      <div class="nav-btn-container">
+        <a href="index.html" class="btn btn-secondary">&larr; กลับหน้าหลัก</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER -->
+  <div class="contact-banner" style="background: linear-gradient(185deg, var(--bg-dark) 20%, rgba(227, 24, 55, 0.05) 100%); padding-top: 150px; padding-bottom: 60px; text-align: center; border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <h1 style="font-size: 40px; color:#fff; font-weight:800; margin-bottom: 8px;">📞 ติดต่อฝ่ายบริการลูกค้า</h1>
+      <p style="color: var(--text-muted); font-size: 15px;">หากท่านมีข้อสงสัยเกี่ยวกับข้อมูลรถยนต์หรือรอบเวลานัดหมายทดลองขับ สามารถติดต่อเราได้ทันที</p>
+    </div>
+  </div>
+
+  <!-- CONTACT LAYOUT -->
+  <div class="container" style="padding-top: 60px; padding-bottom: 80px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start;">
+      
+      <!-- Contact Form -->
+      <div class="calculator-container" style="background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; border-radius: var(--border-radius-lg); box-shadow: var(--shadow-lg);">
+        <h2 style="color: #fff; margin-bottom: 8px; font-weight:700;">ส่งข้อความถึงเรา</h2>
+        <p style="color: var(--text-muted); font-size:13px; margin-bottom: 24px;">กรอกรายละเอียดเพื่อให้เจ้าหน้าที่ฝ่ายบริการติดต่อกลับใน 24 ชั่วโมง</p>
+        
+        <form onsubmit="handleContactSubmit(event)">
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">ชื่อ-นามสกุล</label>
+            <input type="text" id="contact-name" class="form-control" required placeholder="กรอกชื่อ-นามสกุลจริง" style="width:100%;">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">เบอร์โทรศัพท์ติดต่อ</label>
+            <input type="tel" id="contact-phone" class="form-control" required placeholder="ระบุเบอร์โทรศัพท์ติดต่อกลับ" maxlength="10" style="width:100%;">
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">หัวข้อติดต่อ</label>
+            <select id="contact-topic" class="form-control" style="width:100%; padding: 10px;">
+              <option>สอบถามข้อมูลและสเปกรถยนต์</option>
+              <option>นัดหมายทดลองขับล่วงหน้า</option>
+              <option>แจ้งปัญหาการใช้บริการหน้างาน</option>
+              <option>สอบถามแคมเปญไฟแนนซ์และโปรโมชั่น</option>
+              <option>อื่นๆ</option>
+            </select>
+          </div>
+          
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รายละเอียดข้อความ</label>
+            <textarea id="contact-msg" rows="5" class="form-control" placeholder="พิมพ์คำถามหรือความช่วยเหลือที่ต้องการที่นี่..." style="width:100%; resize: none;"></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width:100%; padding: 14px; font-size:15px; font-weight:600;">ส่งข้อความ</button>
+        </form>
+      </div>
+
+      <!-- Showrooms / Branches list -->
+      <div class="branches-section">
+        <h2 style="color: #fff; margin-bottom: 20px; font-weight:700; display:flex; align-items:center; gap:8px;">📍 รายชื่อโชว์รูมและพิกัดแผนที่</h2>
+        <div id="branch-list-container" style="display: flex; flex-direction: column; gap: 20px;">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARE MODAL -->
+  <div class="modal" id="compare-modal">
+    <div class="modal-overlay" onclick="closeCompareModal()"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⚖️ เปรียบเทียบสเปกรถยนต์</h3>
+        <button class="modal-close-btn" onclick="closeCompareModal()">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); margin-bottom: 20px;">กรุณาเลือกรุ่นรถยนต์ 2 รุ่นที่ต้องการเปรียบเทียบสเปกเบื้องต้น</p>
+        
+        <div class="compare-selectors" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 1</label>
+            <select id="select-car-1" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+
+          <div style="font-weight: 800; font-size: 20px; color: var(--primary); text-align: center; margin: 5px 0;">VS</div>
+
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 2</label>
+            <select id="select-car-2" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding-top: 20px;">
+        <button class="btn btn-secondary" onclick="closeCompareModal()">ปิด</button>
+        <button class="btn btn-primary" onclick="confirmCompare()" style="flex-grow: 1;">เริ่มเปรียบเทียบสเปก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">HONDA<span>SHOWROOM</span></div>
+          <p style="margin-top: 10px; max-width: 320px; line-height: 1.7;">
+            สัมผัสที่สุดของระบบจองสิทธิ์ทดลองขับและคำนวณค่างวดออนไลน์เสมือนจริงสำหรับรถยนต์ Honda ทุกรุ่น
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>เมนูนำทาง</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">หน้าแรกโชว์รูม</a></li>
+            <li><a href="techno.html">นวัตกรรมเทคโนโลยี</a></li>
+            <li><a href="contact.html">ติดต่อสาขา / ค้นหาโชว์รูม</a></li>
+            <li><a href="#" onclick="openCompareModal()">เปรียบเทียบสเปกรุ่นรถ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>ฝ่ายบริการลูกค้า</h4>
+          <p style="margin-bottom: 12px;">บริษัท ฮอนด้า ออโตโมบิล (ประเทศไทย) จำกัด (สาธิต)</p>
+          <p style="margin-bottom: 12px;">อีเมล: support@hondashowroom.co.th</p>
+          <p>สายด่วน: 02-555-9999 (จันทร์ - เสาร์ 08:30 - 17:30 น.)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Honda Automobile Thailand. All Rights Reserved. (Demo Project)</p>
+        <p style="font-size: 12px; color: var(--text-muted);">โชว์รูมรถยนต์ ฮอนด้า (ประเทศไทย)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadInitialData();
+      renderShowrooms();
+      populateCompareDropdowns(window.CAR_DATABASE);
+    });
+
+    async function loadInitialData() {
+      // Fetch latest branches from Clever Cloud
+      try {
+        const res = await fetch('/api/branches');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            window.BRANCH_DATABASE = data;
+          }
+        }
+      } catch (error) {
+        console.log('Unable to reach server branches API, using database.js static fallback.', error);
+      }
+
+      // Fetch latest cars from Clever Cloud for the comparison modal
+      try {
+        const res = await fetch('/api/cars');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            window.CAR_DATABASE = data;
+          }
+        }
+      } catch (error) {
+        console.log('Unable to reach server database API, using database.js static fallback.', error);
+      }
+    }
+
+    function renderShowrooms() {
+      const container = document.getElementById('branch-list-container');
+      if (!container || !window.BRANCH_DATABASE) return;
+
+      container.innerHTML = '';
+      window.BRANCH_DATABASE.forEach(branch => {
+        const mapsLink = `https://www.google.com/maps/search/?api=1&query=${branch.lat},${branch.lng}`;
+        
+        container.innerHTML += `
+          <div class="model-card" style="flex-direction: row; border-radius: var(--border-radius-md); padding: 20px; align-items: center; gap: 15px; display: flex;">
+            <div style="flex-grow: 1;">
+              <h3 style="color:#fff; font-size: 16px; font-weight:700; margin-bottom: 6px;">🏢 โชว์รูม ${branch.name}</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">ที่อยู่: ${branch.address}</p>
+              <a href="${mapsLink}" target="_blank" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; border-radius: 6px; display: inline-flex;">🗺️ นำทางผ่าน Google Maps</a>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('contact-name').value.trim();
+      const phone = document.getElementById('contact-phone').value.trim();
+      const topic = document.getElementById('contact-topic').value;
+      const msg = document.getElementById('contact-msg').value.trim();
+
+      if (!name || !phone) {
+        alert('กรุณากรอกข้อมูลส่วนติดต่อที่จำเป็นให้ครบถ้วน');
+        return;
+      }
+
+      // Send to backend contacts API
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, phone, topic, message: msg })
+      })
+      .then(res => {
+        if (res.ok) {
+          console.log('Contact message successfully synced to Clever Cloud!');
+        }
+      })
+      .catch(err => {
+        console.log('Unable to save contact message to database, logged locally only.', err);
+      });
+
+      alert('ขอบคุณสำหรับข้อความของท่าน! ข้อมูลความต้องการนัดหมาย หรือความช่วยเหลือได้รับการบันทึกแล้ว เจ้าหน้าที่จะติดต่อกลับที่เบอร์ ' + phone + ' โดยด่วน');
+      e.target.reset();
+    }
+
+    // Compare system logic
+    function populateCompareDropdowns(cars) {
+      const select1 = document.getElementById('select-car-1');
+      const select2 = document.getElementById('select-car-2');
+      if (!select1 || !select2) return;
+      
+      select1.innerHTML = '<option value="">-- เลือกรุ่นรถ --</option>';
+      select2.innerHTML = '<option value="">-- เลือกรุ่นรถ --</option>';
+
+      cars.forEach(car => {
+        const option1 = `<option value="${car.id}">${car.model_name} (${car.engine_system})</option>`;
+        const option2 = `<option value="${car.id}">${car.model_name} (${car.engine_system})</option>`;
+        select1.innerHTML += option1;
+        select2.innerHTML += option2;
+      });
+    }
+
+    window.openCompareModal = function() {
+      document.getElementById('compare-modal').classList.add('active');
+    };
+
+    window.closeCompareModal = function() {
+      document.getElementById('compare-modal').classList.remove('active');
+    };
+
+    window.confirmCompare = function() {
+      const id1 = document.getElementById('select-car-1').value;
+      const id2 = document.getElementById('select-car-2').value;
+
+      if (!id1 || !id2) {
+        alert('กรุณาเลือกรถให้ครบทั้ง 2 รุ่นครับ');
+        return;
+      }
+      if (id1 === id2) {
+        alert('กรุณาเลือกรุ่นรถที่แตกต่างกันครับ');
+        return;
+      }
+      window.location.href = `compare.html?ids=${id1},${id2}`;
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เปรียบเทียบรุ่นรถ | Honda Showroom</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+</head>
+<body>
+
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="container nav-container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">HONDA</span>
+        <span class="logo-badge">SHOWROOM</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="techno.html">เทคโนโลยี</a></li>
+        <li><a href="contact.html">ติดต่อเรา</a></li>
+        <li><a href="#" onclick="openCompareModal()">เปรียบเทียบรุ่นรถ</a></li>
+      </ul>
+      <div class="nav-btn-container">
+        <a href="index.html" class="btn btn-secondary">&larr; กลับหน้าหลัก</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- COMPARE CONTAINER -->
+  <div class="container" style="padding-top: 130px; padding-bottom: 80px;">
+    <div class="section-header" style="margin-bottom: 40px;">
+      <span class="section-tag">Comparison Sheet</span>
+      <h2 class="section-title">เปรียบเทียบข้อมูลรถยนต์</h2>
+      <p class="section-desc">เปรียบเทียบสเปกทางวิศวกรรม ราคาจำหน่าย และระบบความปลอดภัยของฮอนด้าเคียงคู่กัน</p>
+    </div>
+
+    <!-- Comparative Table -->
+    <div class="table-responsive-wrapper" style="overflow-x: auto; background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); margin-bottom: 40px; box-shadow: var(--shadow-lg);">
+      <table class="compare-table-styled" style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
+        <thead>
+          <tr style="border-bottom: 1px solid var(--border-color); background: rgba(0,0,0,0.15);">
+            <th style="padding: 24px; font-weight: 700; color: var(--text-light); width: 25%;">ข้อมูลเปรียบเทียบ</th>
+            <th id="car1-header" style="padding: 24px; width: 37.5%; text-align: center; border-left: 1px solid var(--border-color);">
+              <div style="color: var(--text-muted);">กำลังโหลดข้อมูลรถรุ่นที่ 1...</div>
+            </th>
+            <th id="car2-header" style="padding: 24px; width: 37.5%; text-align: center; border-left: 1px solid var(--border-color);">
+              <div style="color: var(--text-muted);">กำลังโหลดข้อมูลรถรุ่นที่ 2...</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Specs Rows -->
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">ราคาจำหน่ายเริ่มต้น</td>
+            <td id="price-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); font-size: 16px; font-weight: 700; color: var(--primary);">-</td>
+            <td id="price-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); font-size: 16px; font-weight: 700; color: var(--primary);">-</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color); background: rgba(255,255,255,0.01);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">ประเภทตัวถัง (Body Type)</td>
+            <td id="body-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main);">-</td>
+            <td id="body-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main);">-</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">ระบบขับเคลื่อน (Powertrain)</td>
+            <td id="engine-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main);">-</td>
+            <td id="engine-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main);">-</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color); background: rgba(255,255,255,0.01);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">แรงม้าสูงสุด (PS)</td>
+            <td id="hp-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main); font-weight: 600;">-</td>
+            <td id="hp-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main); font-weight: 600;">-</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">แรงบิดสูงสุด (Nm)</td>
+            <td id="torque-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main); font-weight: 600;">-</td>
+            <td id="torque-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main); font-weight: 600;">-</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color); background: rgba(255,255,255,0.01);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">อัตราการสิ้นเปลืองพลังงาน</td>
+            <td id="fuel-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main);">-</td>
+            <td id="fuel-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-main);">-</td>
+          </tr>
+          <tr style="border-bottom: 1px solid var(--border-color);">
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">เทคโนโลยีความปลอดภัยหลัก</td>
+            <td id="safety-1" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.5; font-size: 13px;">-</td>
+            <td id="safety-2" style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color); color: var(--text-muted); line-height: 1.5; font-size: 13px;">-</td>
+          </tr>
+          <tr>
+            <td style="padding: 20px; font-weight: 600; color: var(--text-light);">ดำเนินการจองคิว</td>
+            <td style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color);">
+              <a href="#" id="book-link-1" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px; border-radius: 8px;">จอง Test Drive</a>
+            </td>
+            <td style="padding: 20px; text-align: center; border-left: 1px solid var(--border-color);">
+              <a href="#" id="book-link-2" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px; border-radius: 8px;">จอง Test Drive</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Quick Swap Selectors Section -->
+    <div class="calculator-container" style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--border-radius-lg); padding: 30px;">
+      <h3 style="color: #fff; margin-bottom: 15px;">🔄 สลับเปลี่ยนคู่เปรียบเทียบ</h3>
+      <div style="display: grid; grid-template-columns: 1fr 0.1fr 1fr 0.5fr; gap: 20px; align-items: end;">
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block;">เลือกเปรียบเทียบ รถรุ่นที่ 1</label>
+          <select id="swap-car-1" class="form-control" style="width: 100%; padding: 10px;">
+            <!-- Populate via JS -->
+          </select>
+        </div>
+        <div style="font-weight: 800; font-size: 18px; color: var(--primary); text-align: center; padding-bottom: 12px;">VS</div>
+        <div class="form-group">
+          <label style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px; display: block;">เลือกเปรียบเทียบ รถรุ่นที่ 2</label>
+          <select id="swap-car-2" class="form-control" style="width: 100%; padding: 10px;">
+            <!-- Populate via JS -->
+          </select>
+        </div>
+        <button class="btn btn-primary" onclick="triggerSwapCompare()" style="width: 100%; padding: 12px; border-radius: 8px;">อัปเดตสเปก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARE MODAL -->
+  <div class="modal" id="compare-modal">
+    <div class="modal-overlay" onclick="closeCompareModal()"></div>
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">⚖️ เปรียบเทียบสเปกรถยนต์</h3>
+        <button class="modal-close-btn" onclick="closeCompareModal()">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="color: var(--text-muted); margin-bottom: 20px;">กรุณาเลือกรุ่นรถยนต์ 2 รุ่นที่ต้องการเปรียบเทียบสเปกเบื้องต้น</p>
+        
+        <div class="compare-selectors" style="display: flex; flex-direction: column; gap: 16px;">
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 1</label>
+            <select id="select-car-1" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+
+          <div style="font-weight: 800; font-size: 20px; color: var(--primary); text-align: center; margin: 5px 0;">VS</div>
+
+          <div class="form-group">
+            <label style="font-size: 13px; color: var(--text-light); margin-bottom: 6px; display: block;">รถรุ่นที่ 2</label>
+            <select id="select-car-2" class="form-control" style="width: 100%;">
+              <!-- Rendered via JS -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer" style="padding-top: 20px;">
+        <button class="btn btn-secondary" onclick="closeCompareModal()">ปิด</button>
+        <button class="btn btn-primary" onclick="confirmCompare()" style="flex-grow: 1;">เริ่มเปรียบเทียบสเปก</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">HONDA<span>SHOWROOM</span></div>
+          <p style="margin-top: 10px; max-width: 320px; line-height: 1.7;">
+            สัมผัสที่สุดของระบบจองสิทธิ์ทดลองขับและคำนวณค่างวดออนไลน์เสมือนจริงสำหรับรถยนต์ Honda ทุกรุ่น
+          </p>
+        </div>
+        <div class="footer-col">
+          <h4>เมนูนำทาง</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">หน้าแรกโชว์รูม</a></li>
+            <li><a href="techno.html">นวัตกรรมเทคโนโลยี</a></li>
+            <li><a href="contact.html">ติดต่อสาขา / ค้นหาโชว์รูม</a></li>
+            <li><a href="#" onclick="openCompareModal()">เปรียบเทียบสเปกรุ่นรถ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>ฝ่ายบริการลูกค้า</h4>
+          <p style="margin-bottom: 12px;">บริษัท ฮอนด้า ออโตโมบิล (ประเทศไทย) จำกัด (สาธิต)</p>
+          <p style="margin-bottom: 12px;">อีเมล: support@hondashowroom.co.th</p>
+          <p>สายด่วน: 02-555-9999 (จันทร์ - เสาร์ 08:30 - 17:30 น.)</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Honda Automobile Thailand. All Rights Reserved. (Demo Project)</p>
+        <p style="font-size: 12px; color: var(--text-muted);">โชว์รูมรถยนต์ ฮอนด้า (ประเทศไทย)</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const ids = urlParams.get('ids');
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await loadCarDatabase();
+      loadComparison();
+      populateDropdowns();
+    });
+
+    async function loadCarDatabase() {
+      try {
+        const res = await fetch('/api/cars');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            window.CAR_DATABASE = data;
+          }
+        }
+      } catch (error) {
+        console.log('Unable to reach server database API, using database.js static fallback.', error);
+      }
+    }
+
+    function loadComparison() {
+      // หากเปิดหน้านี้โดยตรงโดยไม่มีพารามิเตอร์เปรียบเทียบ ใน URL ให้เปรียบเทียบรถสองรุ่นแรกเป็นรุ่นเริ่มต้น (ID: 1 และ 2)
+      let activeIds = ids;
+      if (!activeIds) {
+        activeIds = '1,2';
+      }
+
+      const idArray = activeIds.split(',').map(num => parseInt(num));
+      if (idArray.length < 2 || isNaN(idArray[0]) || isNaN(idArray[1])) {
+        alert('รูปแบบข้อมูลสำหรับเปรียบเทียบไม่ถูกต้อง');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      const car1 = window.CAR_DATABASE.find(c => c.id == idArray[0]);
+      const car2 = window.CAR_DATABASE.find(c => c.id == idArray[1]);
+
+      if (!car1 || !car2) {
+        alert('ขออภัย ไม่พบข้อมูลสเปกรถยนต์บางรุ่น');
+        window.location.href = 'index.html';
+        return;
+      }
+
+      // Populate Slot 1
+      renderCarSlot(1, car1);
+      // Populate Slot 2
+      renderCarSlot(2, car2);
+    }
+
+    function renderCarSlot(slotNum, car) {
+      const defaultImg = car.colors && car.colors.length > 0 ? car.colors[0].image_url : car.image_url;
+      const headerHtml = `
+        <img src="${defaultImg}" alt="${car.model_name}" style="max-height: 120px; object-fit: contain; margin-bottom: 12px; max-width: 100%;">
+        <h3 style="color:#fff; font-size: 18px; margin-bottom: 4px;">${car.model_name}</h3>
+        <p style="font-size:12px; color: var(--text-muted); margin: 0;">${car.description}</p>
+      `;
+      document.getElementById(`car${slotNum}-header`).innerHTML = headerHtml;
+
+      document.getElementById(`price-${slotNum}`).textContent = new Intl.NumberFormat('th-TH').format(parseFloat(car.price)) + ' บาท';
+      document.getElementById(`body-${slotNum}`).textContent = car.body_type;
+      document.getElementById(`engine-${slotNum}`).innerHTML = `${car.engine_system}<br><small style="color: var(--text-muted); font-size: 11px;">${car.displacement || ''}</small>`;
+      document.getElementById(`hp-${slotNum}`).textContent = car.horsepower ? car.horsepower + ' PS' : '-';
+      document.getElementById(`torque-${slotNum}`).textContent = car.torque ? car.torque + ' Nm' : '-';
+      document.getElementById(`fuel-${slotNum}`).textContent = car.consumption || '-';
+      document.getElementById(`safety-${slotNum}`).textContent = car.safety_system || '-';
+
+      const bookLink = document.getElementById(`book-link-${slotNum}`);
+      if (bookLink) {
+        bookLink.href = `detail.html?id=${car.id}&book=true`;
+      }
+    }
+
+    function populateDropdowns() {
+      const swapSelect1 = document.getElementById('swap-car-1');
+      const swapSelect2 = document.getElementById('swap-car-2');
+      const modalSelect1 = document.getElementById('select-car-1');
+      const modalSelect2 = document.getElementById('select-car-2');
+
+      const selectors = [swapSelect1, swapSelect2, modalSelect1, modalSelect2];
+      const idArray = ids ? ids.split(',').map(num => parseInt(num)) : [0, 0];
+
+      selectors.forEach((select, selectIndex) => {
+        if (!select) return;
+        select.innerHTML = '';
+        
+        window.CAR_DATABASE.forEach(car => {
+          const option = document.createElement('option');
+          option.value = car.id;
+          option.textContent = `${car.model_name} (${car.engine_system})`;
+          
+          // Match selected options in swap selector
+          if (selectIndex === 0 && car.id === idArray[0]) option.selected = true;
+          if (selectIndex === 1 && car.id === idArray[1]) option.selected = true;
+
+          select.appendChild(option);
+        });
+      });
+    }
+
+    function triggerSwapCompare() {
+      const val1 = document.getElementById('swap-car-1').value;
+      const val2 = document.getElementById('swap-car-2').value;
+
+      if (val1 === val2) {
+        alert('กรุณาเลือกรุ่นรถที่แตกต่างกันในการเปรียบเทียบ');
+        return;
+      }
+
+      window.location.href = `compare.html?ids=${val1},${val2}`;
+    }
+
+    // Modal Operations
+    window.openCompareModal = function() {
+      document.getElementById('compare-modal').classList.add('active');
+    };
+
+    window.closeCompareModal = function() {
+      document.getElementById('compare-modal').classList.remove('active');
+    };
+
+    window.confirmCompare = function() {
+      const id1 = document.getElementById('select-car-1').value;
+      const id2 = document.getElementById('select-car-2').value;
+
+      if (!id1 || !id2) {
+        alert('กรุณาเลือกรถให้ครบทั้ง 2 รุ่นครับ');
+        return;
+      }
+      if (id1 === id2) {
+        alert('กรุณาเลือกรุ่นรถที่แตกต่างกันครับ');
+        return;
+      }
+      window.location.href = `compare.html?ids=${id1},${id2}`;
+    };
+  </script>
+</body>
+</html>
